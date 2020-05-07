@@ -55,6 +55,13 @@
 	// Query to send Name, Email and Password hash to the database
 	$query = "INSERT INTO users (Name, Email, Password) VALUES ('$name', '$email', '$passHash')";
 
+	//crear carpeta para usuario
+	$carpeta = substr(strval($email), 0, -23);//quitar de email desde @ hacia adelante
+	
+	if(!mkdir("archivos/$carpeta", 0777)){
+		die('Fallo al crear las carpetas...');
+	};
+
 	if (mysqli_query($conn, $query)) {
 		echo "<div class='alert alert-success mt-4' role='alert'><h3>Your account has been created.</h3>
 		<a class='btn btn-outline-primary' href='login.html' role='button'>Login</a></div>";		

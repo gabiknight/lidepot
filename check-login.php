@@ -51,7 +51,8 @@ session_start();
 				$_SESSION['loggedin'] = true;
 				$_SESSION['name'] = $row['Name'];
 				$_SESSION['start'] = time();
-				$_SESSION['expire'] = $_SESSION['start'] + (5 * 60) ;						
+				$_SESSION['expire'] = $_SESSION['start'] + (5 * 60) ;	
+				$_SESSION['email'] = $row['Email'];					
 				
 				echo "<div class='alert alert-success mt-4' role='alert'><strong>Bienvenid@!</strong> $row[Name]	
 				<p><a href='directorio.php'>Ver Archivos</a></p>		

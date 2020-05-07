@@ -1,7 +1,9 @@
 <?php
 session_start();
 $listar = null;
-$directorio = opendir("archivos/");
+$email = $_SESSION['email'];
+$carpeta = substr(strval($email), 0, -23);//quitar de email desde @ hacia adelante
+$directorio = opendir("archivos/$carpeta");
 while($elemento = readdir($directorio))
 {
     if($elemento != '.' && $elemento != '..'){
@@ -23,7 +25,7 @@ while($elemento = readdir($directorio))
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
@@ -51,7 +53,7 @@ while($elemento = readdir($directorio))
 
     <div class="container">
         <!-- <p>Bienvenid@: <?php echo $_SESSION['name']; ?></p>-->
-        <h3>Listado de archivos y carpetas del directorio "archivos/"</h3>
+        <h3>Listado de archivos y carpetas de <?php echo $_SESSION['name']; ?></h3>
         <ul><?php echo $listar ?></ul>
         <p><a href="logout.php">Logout</a></p>
     </div>
